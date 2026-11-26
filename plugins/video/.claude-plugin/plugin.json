@@ -1,0 +1,17 @@
+{
+  "name": "video",
+  "version": "1.0.0",
+  "description": "Product demo and feature films with Remotion: a film kit, a recipe, and a review checklist.",
+  "author": {
+    "name": "Steven Molina",
+    "url": "https://github.com/stevmolina"
+  },
+  "homepage": "https://github.com/stevmolina/steven-skills",
+  "repository": "https://github.com/stevmolina/steven-skills",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "remotion",
+    "demo"
+  ]
+}

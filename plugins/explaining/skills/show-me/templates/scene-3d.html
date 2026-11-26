@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Scene title]</title>
+<!--
+  3D scene shell: how the parts of the client's business fit. Labelled nodes, edges between
+  them, and particles flowing along each edge in the direction things move (goods, money,
+  files). Drag to orbit, scroll to zoom, click a node to read what it is.
+  Edit only the SCENE object below. 8 nodes or fewer, real names, one plain clause per node.
+  Three.js loads from a CDN, so it needs a network connection; no build step.
+-->
+<style>
+:root{color-scheme:light dark;--bg:#fcfcfc;--fg:#27272a;--muted:#71717b;--card:#ffffffe6;--border:#e4e4e7;--accent:#1b4ed8;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0a0a0a;--fg:#f5f5f5;--muted:#8a8a8a;--card:#141414e6;--border:#262626;--accent:#346bf1}}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:14px/1.45 var(--font);overflow:hidden}
+#stage{position:fixed;inset:0}
+.head{position:fixed;top:14px;left:16px;right:16px;pointer-events:none}
+.head h1{font-size:18px;margin:0}
+.head p{margin:2px 0 0;color:var(--muted)}
+.label{font:600 12.5px var(--font);color:var(--fg);background:var(--card);border:1px solid var(--border);border-radius:999px;padding:3px 10px;white-space:nowrap;cursor:pointer;user-select:none}
+.label.on{border-color:var(--accent);color:var(--accent)}
+.info{position:fixed;left:16px;right:16px;bottom:16px;max-width:520px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;backdrop-filter:blur(6px)}
+.info b{display:block}
+.key{position:fixed;right:16px;top:14px;font-size:12px;color:var(--muted);text-align:right}
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage"></div>
+<div class="head"><h1 id="title"></h1><p id="sub"></p></div>
+<div class="key" id="key"></div>
+<div class="info" id="info"></div>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
+
+// ===== Edit this. Placeholders are in [brackets]. =====
+const SCENE = {
+  title: "[How the parts of the business fit]",
+  sub: "Drag to turn, scroll to zoom, click a box name.",
+  intro: "[One plain sentence on the big picture. Click any name to read what it does.]",
+  nodes: [ // pos is [x, y, z]; keep it within about -6..6
+    { id: "a", name: "[Box 1]", about: "[What it is, one clause]", pos: [-5, 0, 0], color: 0x346bf1 },
+    { id: "b", name: "[Box 2]", about: "[What it is, one clause]", pos: [0, 2, -2], color: 0x2dd4bf },
+    { id: "c", name: "[Box 3]", about: "[What it is, one clause]", pos: [5, 0, 0], color: 0xfbbf24 },
+    { id: "d", name: "[Box 4]", about: "[What it is, one clause]", pos: [0, -2, 3], color: 0xc084fc }
+  ],
+  edges: [ // what moves from one node to the next; particles flow from -> to
+    { from: "a", to: "b", what: "[what moves]", color: 0x346bf1 },
+    { from: "b", to: "c", what: "[what moves]", color: 0x2dd4bf },
+    { from: "c", to: "d", what: "[what moves]", color: 0xfbbf24 },
+    { from: "d", to: "a", what: "[what moves]", color: 0xc084fc }
+  ],
+  key: "Dots = [what the moving dots stand for]"
+};
+// ===== End of edits. =====
+
+const $ = id => document.getElementById(id);
+$("title").textContent = SCENE.title; $("sub").textContent = SCENE.sub;
+$("info").textContent = SCENE.intro; $("key").textContent = SCENE.key;
+
+const stage = $("stage");
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+stage.appendChild(renderer.domElement);
+const labels = new CSS2DRenderer();
+labels.domElement.style.position = "absolute"; labels.domElement.style.inset = "0";
+stage.appendChild(labels.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
+camera.position.set(0, 6, 15);
+const controls = new OrbitControls(camera, labels.domElement);
+controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const sun = new THREE.DirectionalLight(0xffffff, 1.4); sun.position.set(5, 10, 7); scene.add(sun);
+
+const byId = {}, labelEls = [];
+function select(n, el){
+  labelEls.forEach(x => x.classList.toggle("on", x === el));
+  const out = SCENE.edges.filter(e => e.from === n.id).map(e => e.what + " to " + byId[e.to].name);
+  const inn = SCENE.edges.filter(e => e.to === n.id).map(e => e.what + " from " + byId[e.from].name);
+  const info = $("info"); info.innerHTML = "";
+  const b = document.createElement("b"); b.textContent = n.name; info.appendChild(b);
+  info.appendChild(document.createTextNode(n.about + (inn.length ? " Gets " + inn.join(", ") + "." : "") + (out.length ? " Sends " + out.join(", ") + "." : "")));
+  controls.autoRotate = false;
+}
+for (const n of SCENE.nodes){
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(1.4, 1.4, 1.4),
+    new THREE.MeshStandardMaterial({ color: n.color, roughness: 0.45, metalness: 0.1 }));
+  mesh.position.set(...n.pos); scene.add(mesh);
+  const el = document.createElement("div"); el.className = "label"; el.textContent = n.name;
+  el.addEventListener("pointerdown", ev => { ev.stopPropagation(); select(n, el); });
+  const tag = new CSS2DObject(el); tag.position.set(0, 1.25, 0); mesh.add(tag);
+  labelEls.push(el); byId[n.id] = { ...n, mesh };
+}
+
+const flows = [];
+for (const e of SCENE.edges){
+  const a = new THREE.Vector3(...byId[e.from].pos), b = new THREE.Vector3(...byId[e.to].pos);
+  const mid = a.clone().add(b).multiplyScalar(0.5).add(new THREE.Vector3(0, 1.2, 0));
+  const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+  const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(48)),
+    new THREE.LineBasicMaterial({ color: e.color, transparent: true, opacity: 0.45 }));
+  scene.add(line);
+  const dots = [];
+  for (let k = 0; k < 6; k++){
+    const d = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 12), new THREE.MeshBasicMaterial({ color: e.color }));
+    scene.add(d); dots.push({ d, t: k / 6 });
+  }
+  flows.push({ curve, dots });
+}
+
+function resize(){
+  const w = innerWidth, h = innerHeight;
+  renderer.setSize(w, h); labels.setSize(w, h);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize); resize();
+
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => {
+  const dt = clock.getDelta();
+  for (const f of flows) for (const p of f.dots){
+    p.t = (p.t + dt * 0.18) % 1;
+    p.d.position.copy(f.curve.getPoint(p.t));
+  }
+  controls.update();
+  renderer.render(scene, camera); labels.render(scene, camera);
+});
+</script>
+</body>
+</html>

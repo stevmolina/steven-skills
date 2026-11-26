@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Calculator title]</title>
+<!--
+  Calculator shell: a business rule with numbers. Move the inputs, the result and a one-sentence
+  explanation of the rule update live. Edit only the CALC object below. Real client rules and
+  numbers only; start the sliders at a real case.
+-->
+<style>
+:root{color-scheme:light dark;--bg:#fcfcfc;--fg:#27272a;--muted:#71717b;--card:#fff;--border:#e4e4e7;--accent:#1b4ed8;--ok:#047857;--warn:#bb4d00;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0a0a0a;--fg:#f5f5f5;--muted:#8a8a8a;--card:#141414;--border:#262626;--accent:#346bf1;--ok:#34d399;--warn:#ffb900}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);display:flex;justify-content:center;padding:24px 16px}
+.app{width:100%;max-width:640px;display:flex;flex-direction:column;gap:14px}
+h1{font-size:22px;margin:0}
+.sub{color:var(--muted);margin:2px 0 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
+.field{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{font-weight:600}
+.field .val{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent)}
+.field input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--accent)}
+.field input[type=number]{width:110px;font:inherit;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--fg)}
+.field .hint{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+.result{text-align:center}
+.result .label{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.result .num{font-size:46px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;margin:4px 0}
+.result .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;border:1.5px solid currentColor}
+.rule{font-size:15px;border-left:4px solid var(--accent);padding:4px 0 4px 12px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div><h1 id="title"></h1><p class="sub" id="sub"></p></div>
+  <div class="card" id="inputs"></div>
+  <div class="card result">
+    <div class="label" id="resLabel"></div>
+    <div class="num" id="resNum"></div>
+    <span class="tag" id="resTag"></span>
+  </div>
+  <div class="rule" id="rule"></div>
+</div>
+
+<script>
+// ===== Edit this. Placeholders are in [brackets]. =====
+const CALC = {
+  title: "[What this works out, in the client's words]",
+  sub: "[Map box: the box name on map.html]",
+  inputs: [
+    // type "range" for a slider, "number" for a typed value. Start at a real case.
+    { id: "a", label: "[First input]", type: "range", min: 0, max: 100, step: 1, value: 80, unit: "%", hint: "[What it is, one clause]" },
+    { id: "b", label: "[Second input]", type: "number", min: 0, max: 1000000, step: 100, value: 10000, unit: "$", hint: "[What it is, one clause]" }
+  ],
+  resultLabel: "[What the result is]",
+  // The rule. Gets the input values by id, returns { value, text, tag, tone }.
+  // text is ONE plain sentence that explains why the result is what it is, with the numbers.
+  compute: v => {
+    const value = v.b * v.a / 100;  // [replace with the real rule]
+    return {
+      value: "$" + value.toLocaleString(),
+      text: `[Plain sentence: with ${v.a}% and $${v.b.toLocaleString()}, the rule gives $${value.toLocaleString()}, because ...]`,
+      tag: v.a >= 50 ? "[above the line]" : "[below the line]",
+      tone: v.a >= 50 ? "ok" : "warn"
+    };
+  }
+};
+// ===== End of edits. =====
+
+const $ = id => document.getElementById(id);
+$("title").textContent = CALC.title; $("sub").textContent = CALC.sub; $("resLabel").textContent = CALC.resultLabel;
+const fmt = (inp, x) => inp.unit === "$" ? "$" + Number(x).toLocaleString() : Number(x).toLocaleString() + (inp.unit || "");
+for (const inp of CALC.inputs){
+  const f = document.createElement("div"); f.className = "field";
+  f.innerHTML = `<label for="${inp.id}"></label><span class="val" id="${inp.id}-val"></span>
+    <input id="${inp.id}" type="${inp.type}" min="${inp.min}" max="${inp.max}" step="${inp.step}" value="${inp.value}">
+    <span class="hint"></span>`;
+  f.querySelector("label").textContent = inp.label;
+  f.querySelector(".hint").textContent = inp.hint || "";
+  if (inp.type === "number") f.querySelector("input").style.gridColumn = "1/-1";
+  $("inputs").appendChild(f);
+  f.querySelector("input").addEventListener("input", update);
+}
+function update(){
+  const v = {};
+  for (const inp of CALC.inputs){
+    v[inp.id] = Number($(inp.id).value);
+    $(inp.id + "-val").textContent = fmt(inp, v[inp.id]);
+  }
+  const r = CALC.compute(v);
+  $("resNum").textContent = r.value;
+  $("rule").textContent = r.text;
+  const tag = $("resTag"); tag.textContent = r.tag || ""; tag.style.display = r.tag ? "" : "none";
+  tag.style.color = r.tone === "warn" ? "var(--warn)" : "var(--ok)";
+}
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+name: privacy
+on:
+  push:
+  pull_request:
+jobs:
+  check-private:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Block private facts
+        env:
+          PRIVACY_KEY: ${{ secrets.PRIVACY_KEY }}
+        run: |
+          test -n "$PRIVACY_KEY" || { echo "PRIVACY_KEY secret missing"; exit 1; }
+          python3 scripts/check-private.py
+  validate-plugins:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Validate the marketplace and each plugin
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .
+          for p in plugins/*/; do claude plugin validate "$p"; done

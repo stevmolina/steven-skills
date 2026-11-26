@@ -1,0 +1,18 @@
+{
+  "name": "explaining",
+  "version": "1.0.0",
+  "description": "Explain things so they land: visual explainers (show-me), plain rewrites (simpler), and bare copy-ready drafts (raw).",
+  "author": {
+    "name": "Steven Molina",
+    "url": "https://github.com/stevmolina"
+  },
+  "homepage": "https://github.com/stevmolina/steven-skills",
+  "repository": "https://github.com/stevmolina/steven-skills",
+  "license": "MIT",
+  "keywords": [
+    "explaining",
+    "writing",
+    "diagrams",
+    "teaching"
+  ]
+}

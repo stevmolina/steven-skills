@@ -1,0 +1,68 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "steven-skills",
+  "owner": {
+    "name": "Steven Molina",
+    "url": "https://github.com/stevmolina"
+  },
+  "description": "Steven Molina's public agent skills, packaged as Claude Code plugins.",
+  "metadata": {
+    "description": "Steven Molina's public agent skills, packaged as Claude Code plugins.",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "shipping",
+      "source": "./plugins/shipping",
+      "description": "Ship code safely: a ship pipeline with reviewers and proof, a grill session to stress-test a plan, and a CodeRabbit review loop.",
+      "version": "1.0.0",
+      "category": "shipping",
+      "tags": [
+        "shipping",
+        "review",
+        "pull-requests",
+        "git"
+      ]
+    },
+    {
+      "name": "explaining",
+      "source": "./plugins/explaining",
+      "description": "Explain things so they land: visual explainers (show-me), plain rewrites (simpler), and bare copy-ready drafts (raw).",
+      "version": "1.0.0",
+      "category": "explaining",
+      "tags": [
+        "explaining",
+        "writing",
+        "diagrams",
+        "teaching"
+      ]
+    },
+    {
+      "name": "working-with-agents",
+      "source": "./plugins/working-with-agents",
+      "description": "Run agents well: hand work to a fresh thread, preflight logins before a task, capture a workflow as a skill, and keep a project brain.",
+      "version": "1.0.0",
+      "category": "working-with-agents",
+      "tags": [
+        "agents",
+        "handoff",
+        "preflight",
+        "skills",
+        "knowledge"
+      ]
+    },
+    {
+      "name": "video",
+      "source": "./plugins/video",
+      "description": "Product demo and feature films with Remotion: a film kit, a recipe, and a review checklist.",
+      "version": "1.0.0",
+      "category": "video",
+      "tags": [
+        "video",
+        "remotion",
+        "demo"
+      ]
+    }
+  ]
+}

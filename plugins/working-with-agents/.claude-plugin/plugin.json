@@ -1,0 +1,19 @@
+{
+  "name": "working-with-agents",
+  "version": "1.0.0",
+  "description": "Run agents well: hand work to a fresh thread, preflight logins before a task, capture a workflow as a skill, and keep a project brain.",
+  "author": {
+    "name": "Steven Molina",
+    "url": "https://github.com/stevmolina"
+  },
+  "homepage": "https://github.com/stevmolina/steven-skills",
+  "repository": "https://github.com/stevmolina/steven-skills",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "handoff",
+    "preflight",
+    "skills",
+    "knowledge"
+  ]
+}

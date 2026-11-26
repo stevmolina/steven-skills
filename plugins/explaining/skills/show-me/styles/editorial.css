@@ -1,0 +1,36 @@
+/* Family: Editorial. For explainers and stories told from start to end.
+ *
+ * Mood: a visual essay. A heavy soft display face set huge, a calm reading
+ * serif, generous margins with side notes, a sticky figure that changes as you
+ * scroll the steps beside it, and one highlighter colour that marks the word
+ * the figure is showing right now. Dark mode borrows Stripe Press's warm brown.
+ *
+ * References (pull at least one fresh one each time, then vary):
+ *   https://pudding.cool               heavy soft display, bright full-bleed colour blocks, mono kickers
+ *   https://pudding.cool/2024/10/crokinole/  serif reading text, figure leads the paragraph
+ *   https://press.stripe.com           warm brown night (#201819), serif display, objects with depth
+ *   https://distill.pub/2017/momentum/ margin notes, figures you can touch mid-sentence
+ *
+ * Scroll motion uses IntersectionObserver or GSAP ScrollTrigger with scrub;
+ * never hijack native scroll.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..900,100&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#fbf8f3; --sheet:#ffffff; --line:#e7e0d4; --ink:#1d1a16; --muted:#6e665b;
+  --mark:#ffd84d;            /* the highlighter */
+  --block-1:#ff5a36; --block-2:#3b5bfd; --block-3:#ffd84d;   /* full-bleed section colours */
+  --display:"Fraunces",Georgia,serif;    /* use font-variation-settings:"SOFT" 100,"opsz" 144 at 800 to 900 */
+  --serif:"Newsreader",Georgia,serif;
+  --kicker:"JetBrains Mono",ui-monospace,monospace;
+  --h1:clamp(48px,9vw,128px); --h1-track:-.035em; --h1-weight:850;
+  --measure:62ch; --body:20px; --lead:1.6;
+  --r-sm:4px; --r-md:8px;
+  --ease:cubic-bezier(.25,1,.5,1);
+  --t-step:600ms;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#201819; --sheet:#2a2122; --line:#3d3233; --ink:#f3ece4; --muted:#b5a99c; --mark:#c9a227}
+}
+@media (prefers-reduced-motion:reduce){:root{--t-step:0ms}}

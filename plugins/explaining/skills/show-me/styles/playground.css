@@ -1,0 +1,42 @@
+/* Family: Playground. For games where the learner plays a person in the business.
+ *
+ * Mood: Saturday-morning energy. Several loud saturated colours on white,
+ * thick rounded shapes, 3D buttons with a deep bottom edge, a mascot-like
+ * character or sticker, big rounded type, and bouncy feedback: a right answer
+ * pops and confetti-bursts, a wrong one shakes once and explains why.
+ *
+ * References (pull at least one fresh one each time, then vary):
+ *   https://www.duolingo.com           3D buttons (4px bottom edge), green as "go", rounded heavy type
+ *   https://brilliant.org/courses/logic-deduction/  level path, glowing current node
+ *   https://rainbow.me                 several loud colours in one page, toy-like gradients
+ *   https://ncase.me/trust/            characters that act out the rule
+ *
+ * The concrete game styling lives with the game (show-me/templates/game.html).
+ * These tokens are a starting point, not a uniform.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;700;800&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#ffffff; --sheet:#ffffff; --sheet-2:#f7f7f7; --line:#e5e5e5; --ink:#3c3c3c; --muted:#777;
+  /* a loud set, use several at once */
+  --c-green:#58cc02; --c-green-edge:#58a700;
+  --c-blue:#1cb0f6;  --c-blue-edge:#1899d6;
+  --c-pink:#ff4b8b;  --c-pink-edge:#d93a72;
+  --c-yellow:#ffc800;--c-yellow-edge:#e5a400;
+  --c-purple:#a560e8;--c-purple-edge:#8549ba;
+  --right:var(--c-green); --wrong:#ff4b4b;
+  --display:"Baloo 2","Nunito",ui-rounded,system-ui,sans-serif;
+  --sans:"Nunito",ui-rounded,system-ui,sans-serif;
+  --h1:clamp(40px,6.5vw,88px); --h1-track:-.01em;
+  --r-sm:12px; --r-md:18px; --r-lg:28px; --r-pill:999px;
+  --edge:0 4px 0;                          /* append a colour: box-shadow:var(--edge) var(--c-green-edge) */
+  --border:2px solid var(--line);
+  --bounce:cubic-bezier(.68,-.6,.32,1.6);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --t-pop:260ms; --t-shake:400ms;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#131f24; --sheet:#1a2a31; --sheet-2:#202f36; --line:#37464f; --ink:#f1f7fb; --muted:#9fb1bb}
+}
+@media (prefers-reduced-motion:reduce){:root{--t-pop:0ms;--t-shake:0ms;--bounce:linear;--spring:linear}}

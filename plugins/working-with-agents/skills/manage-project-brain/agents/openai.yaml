@@ -1,0 +1,5 @@
+interface:
+  display_name: "Manage Project Brain"
+  short_description: "Scaffold, audit, lint, and migrate knowledge repos to manage-project-brain/v1"
+policy:
+  allow_implicit_invocation: true
