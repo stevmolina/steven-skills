@@ -1,6 +1,6 @@
 ---
 name: show-me
-description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. Use when the user asks to see how something works, for example "draw how X works", "with a picture", "show me", "diagram this", "visualize", or when an explanation has three or more connected parts. Load it with the Skill tool before drawing, since it holds the render check.
+description: Quick visual explainers, such as a concise diagram, code-shape sketch, or small HTML page that helps the user understand the current topic. Use when the user asks "show me", "with a picture", "diagram this", "visualize", "sketch it", or when an explanation has three or more connected parts. Load it with the Skill tool before drawing, since it holds the render check. For a crafted, detailed figure of how a system or component works ("draw how X works"), use a dedicated illustration skill such as anatomy when one is installed.
 ---
 
 > Local notes: if `~/.agents/skill-notes/show-me.md` exists, read it first. It holds this setup's private facts for this skill (names, brands, paths, house rules) and wins over the generic text here.
@@ -23,7 +23,7 @@ Before drawing, find the thing you are drawing. Look nearest first and stop as s
 Never search the whole disk (`find /`). Still not found: draw what you have, and say in one line
 what you could not find. Do not stop to ask which one was meant.
 
-**A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color.
+**A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color. If the user wants a crafted, detailed figure of a system rather than a quick sketch, and a figure skill such as anatomy is installed, hand over to it.
 
 - Show logic or an algorithm as pseudocode:
 
