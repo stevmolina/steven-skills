@@ -1,0 +1,62 @@
+/* swiss-hairline: Crisp grotesk on white, giant tight headlines, hairline grid, one electric blue.
+ * Source: https://vercel.com
+ */
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#ffffff;
+  --surface:#f6f6f5;
+  --ink:#111111;
+  --muted:#5c5c5c;
+  --line:#e4e4e4;
+  --accent:#1a3cff; --accent-text:var(--accent);
+  --accent-ink:#ffffff;
+  --ok:#0f7a43;
+  --warn:#8a5200;
+  --bad:#c4261d;
+  --shadow:none;
+  --font-display:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --font-body:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --h1:clamp(44px,7vw,104px);
+  --h1-weight:500;
+  --h1-track:-.055em;
+  --h1-lead:.96;
+  --body:16px;
+  --lead:1.55;
+  --measure:58ch;
+  --space:8px;
+  --radius:0px;
+  --border:1px solid var(--line);
+  --ease:cubic-bezier(.2,0,0,1);
+  --t-fast:100ms;
+  --t-med:220ms;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c0c0c;
+    --surface:#141414;
+    --ink:#f2f2f2;
+    --muted:#a0a0a0;
+    --line:#2a2a2a;
+    --accent:#7088ff; --accent-text:var(--accent);
+    --accent-ink:#0c0c0c;
+    --ok:#4cc38a;
+    --warn:#f2b544;
+    --bad:#f26b57;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c0c0c;
+  --surface:#141414;
+  --ink:#f2f2f2;
+  --muted:#a0a0a0;
+  --line:#2a2a2a;
+  --accent:#7088ff; --accent-text:var(--accent);
+  --accent-ink:#0c0c0c;
+  --ok:#4cc38a;
+  --warn:#f2b544;
+  --bad:#f26b57;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}

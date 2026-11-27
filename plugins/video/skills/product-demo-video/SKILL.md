@@ -23,6 +23,8 @@ Two kinds, one craft:
 - Feature films use the shared film look below, colored and typed from each app (example in `film-kit/example/`;
   local notes may provide reference contact sheets of the approved look).
   A new product without a brand: propose a distinct style with a link to a reference example, and get approval first.
+- Run `design-apply` (design plugin) before any frame is drawn: it takes the product's brand tokens (or, with no brand,
+  a library system or a `design-find` gallery) and you turn them into the video's `theme.ts`.
 - If it doesn't feel like that brand, it's wrong, even if it looks nice.
 
 ## 2. Story and taste

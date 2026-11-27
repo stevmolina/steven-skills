@@ -1,0 +1,62 @@
+/* quiet-ledger: Warm paper, serif headlines, one ink-blue accent, figures set like a ledger.
+ * Source: https://www.notion.com
+ */
+@import url("https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#f6f3ec;
+  --surface:#fbf9f4;
+  --ink:#211e19;
+  --muted:#675f53;
+  --line:#ddd6c8;
+  --accent:#1f4b99; --accent-text:var(--accent);
+  --accent-ink:#ffffff;
+  --ok:#2f6b3a;
+  --warn:#855500;
+  --bad:#a12a1f;
+  --shadow:none;
+  --font-display:"Literata",Georgia,serif;
+  --font-body:"Public Sans",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --h1:clamp(40px,5.6vw,76px);
+  --h1-weight:500;
+  --h1-track:-.02em;
+  --h1-lead:1.06;
+  --body:17px;
+  --lead:1.65;
+  --measure:60ch;
+  --space:8px;
+  --radius:2px;
+  --border:1px solid var(--line);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --t-fast:120ms;
+  --t-med:260ms;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1914;
+    --surface:#23201a;
+    --ink:#efe9dc;
+    --muted:#b0a794;
+    --line:#373228;
+    --accent:#8fb2f0; --accent-text:var(--accent);
+    --accent-ink:#14161c;
+    --ok:#7fc08a;
+    --warn:#e0b04a;
+    --bad:#ee8c7d;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1914;
+  --surface:#23201a;
+  --ink:#efe9dc;
+  --muted:#b0a794;
+  --line:#373228;
+  --accent:#8fb2f0; --accent-text:var(--accent);
+  --accent-ink:#14161c;
+  --ok:#7fc08a;
+  --warn:#e0b04a;
+  --bad:#ee8c7d;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}

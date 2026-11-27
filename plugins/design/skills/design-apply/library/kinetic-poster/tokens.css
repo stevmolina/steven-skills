@@ -1,0 +1,62 @@
+/* kinetic-poster: Poster-scale type on near-black, cream text, acid green, discipline tags in color, motion everywhere.
+ * Source: https://gsap.com
+ */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap");
+
+:root{
+  color-scheme:dark light;
+  --bg:#0e100f;
+  --surface:#171a18;
+  --ink:#fffce1;
+  --muted:#a8a893;
+  --line:#42433d;
+  --accent:#0ae448; --accent-text:var(--accent);
+  --accent-ink:#0e100f;
+  --ok:#3ddc84;
+  --warn:#ffb02e;
+  --bad:#ff5d5d;
+  --shadow:none;
+  --font-display:"Syne",ui-sans-serif,system-ui,sans-serif;
+  --font-body:"Hanken Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"Spline Sans Mono",ui-monospace,Menlo,monospace;
+  --h1:clamp(56px,14vw,220px);
+  --h1-weight:800;
+  --h1-track:-.05em;
+  --h1-lead:.88;
+  --body:17px;
+  --lead:1.55;
+  --measure:54ch;
+  --space:8px;
+  --radius:999px;
+  --border:1px solid var(--line);
+  --ease:cubic-bezier(.76,0,.24,1);
+  --t-fast:200ms;
+  --t-med:600ms;
+  --tag-pink:#fec5fb;
+  --tag-orange:#ff8709;
+  --tag-violet:#9d95ff;
+  --tag-cyan:#00bae2;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#fffce1; --accent-text:#068229;
+    --surface:#fff7c2;
+    --ink:#0e100f;
+    --muted:#55564a;
+    --line:#cfcaa0;
+    --ok:#0f7a3a;
+    --warn:#8a5200;
+    --bad:#b3261e;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#fffce1; --accent-text:#068229;
+  --surface:#fff7c2;
+  --ink:#0e100f;
+  --muted:#55564a;
+  --line:#cfcaa0;
+  --ok:#0f7a3a;
+  --warn:#8a5200;
+  --bad:#b3261e;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}

@@ -1,0 +1,68 @@
+/* gumdrop: Candy-bright and glossy: hot pink on cream, soft gradients, round everything, springy.
+ * Source: https://rainbow.me
+ */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Outfit:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#fff7fb;
+  --surface:#ffffff;
+  --ink:#2a1233;
+  --muted:#6b5278;
+  --line:#f0d9e6;
+  --accent:#ff6fae; --accent-text:#df0062;
+  --accent-ink:#2a1233;
+  --ok:#14803a;
+  --warn:#8a5200;
+  --bad:#c62828;
+  --shadow:0 10px 28px rgba(255,111,174,.28);
+  --font-display:"Fredoka",ui-rounded,system-ui,sans-serif;
+  --font-body:"Outfit",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"Fira Code",ui-monospace,Menlo,monospace;
+  --h1:clamp(44px,8vw,112px);
+  --h1-weight:700;
+  --h1-track:-.02em;
+  --h1-lead:.98;
+  --body:17px;
+  --lead:1.55;
+  --measure:54ch;
+  --space:8px;
+  --radius:28px;
+  --border:2px solid var(--line);
+  --ease:cubic-bezier(.34,1.56,.64,1);
+  --t-fast:180ms;
+  --t-med:380ms;
+  --c-lilac:#a78bfa;
+  --c-sun:#ffd23f;
+  --c-mint:#3ddc97;
+  --c-sky:#4cc9f0;
+  --c-coral:#ff7a59;
+  --grad:linear-gradient(135deg,#ff6fae,#a78bfa 55%,#4cc9f0);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b0f24;
+    --surface:#28163a;
+    --ink:#fff2fa;
+    --muted:#cdb4d8;
+    --line:#4a2d5e;
+    --accent:#ff7eb6; --accent-text:var(--accent);
+    --ok:#5ee09a;
+    --warn:#ffd23f;
+    --bad:#ff8080;
+    --shadow:0 10px 28px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b0f24;
+  --surface:#28163a;
+  --ink:#fff2fa;
+  --muted:#cdb4d8;
+  --line:#4a2d5e;
+  --accent:#ff7eb6; --accent-text:var(--accent);
+  --ok:#5ee09a;
+  --warn:#ffd23f;
+  --bad:#ff8080;
+  --shadow:0 10px 28px rgba(0,0,0,.4);
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}

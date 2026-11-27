@@ -9,27 +9,115 @@
   explanation of the rule update live. Edit only the CALC object below. Real client rules and
   numbers only; start the sliders at a real case.
 -->
+<style id="tokens">
+/* explorable: A warm paper desk where the numbers are toys: serif headline, huge rolling figures, color that names a variable.
+ * Source: https://brilliant.org
+ */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#f3f2ef;
+  --surface:#ffffff;
+  --ink:#141413;
+  --muted:#66655f;
+  --line:#e4e2dc;
+  --accent:#2f5bea; --accent-text:var(--accent);
+  --accent-ink:#ffffff;
+  --ok:#17784c;
+  --warn:#8a5200;
+  --bad:#b42318;
+  --shadow:0 1px 0 var(--line),0 12px 32px rgba(20,20,19,.06);
+  --sheet-2:#faf9f6;
+  --var-1:#2f5bea;
+  --var-1-soft:#e7edfd;
+  --var-2:#7a4cf0;
+  --var-2-soft:#efe9fd;
+  --var-3:#e0662d;
+  --var-3-soft:#fcece3;
+  --press:0 3px 0 var(--line);
+  --font-display:"Instrument Serif",Georgia,serif;
+  --font-body:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --h1:clamp(44px,7vw,96px);
+  --h1-weight:400;
+  --h1-track:-.02em;
+  --h1-lead:1;
+  --body:17px;
+  --lead:1.6;
+  --measure:62ch;
+  --space:8px;
+  --radius:16px;
+  --border:1px solid var(--line);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --t-fast:160ms;
+  --t-med:450ms;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --big-number:clamp(48px,7vw,104px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121211;
+    --surface:#1b1b1a;
+    --ink:#f2f1ec;
+    --muted:#a3a19a;
+    --line:#2e2d2a;
+    --accent:#7c9bff; --accent-text:var(--accent);
+    --accent-ink:#121211;
+    --ok:#4cc38a;
+    --warn:#f2b544;
+    --bad:#f26b57;
+    --shadow:0 1px 0 var(--line),0 12px 32px rgba(0,0,0,.35);
+    --sheet-2:#20201e;
+    --var-1:#7c9bff;
+    --var-1-soft:#1b2340;
+    --var-2:#b195ff;
+    --var-2-soft:#271e3f;
+    --var-3:#ff9a66;
+    --var-3-soft:#3a2216;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121211;
+  --surface:#1b1b1a;
+  --ink:#f2f1ec;
+  --muted:#a3a19a;
+  --line:#2e2d2a;
+  --accent:#7c9bff; --accent-text:var(--accent);
+  --accent-ink:#121211;
+  --ok:#4cc38a;
+  --warn:#f2b544;
+  --bad:#f26b57;
+  --shadow:0 1px 0 var(--line),0 12px 32px rgba(0,0,0,.35);
+  --sheet-2:#20201e;
+  --var-1:#7c9bff;
+  --var-1-soft:#1b2340;
+  --var-2:#b195ff;
+  --var-2-soft:#271e3f;
+  --var-3:#ff9a66;
+  --var-3-soft:#3a2216;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}
+</style>
 <style>
-:root{color-scheme:light dark;--bg:#fcfcfc;--fg:#27272a;--muted:#71717b;--card:#fff;--border:#e4e4e7;--accent:#1b4ed8;--ok:#047857;--warn:#bb4d00;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#0a0a0a;--fg:#f5f5f5;--muted:#8a8a8a;--card:#141414;--border:#262626;--accent:#346bf1;--ok:#34d399;--warn:#ffb900}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);display:flex;justify-content:center;padding:24px 16px}
-.app{width:100%;max-width:640px;display:flex;flex-direction:column;gap:14px}
-h1{font-size:22px;margin:0}
-.sub{color:var(--muted);margin:2px 0 0}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}
-.field{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;margin-bottom:14px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--body)/var(--lead) var(--font-body);display:flex;justify-content:center;padding:calc(var(--space)*3) calc(var(--space)*2)}
+.app{width:100%;max-width:640px;display:flex;flex-direction:column;gap:calc(var(--space)*2)}
+h1{font:var(--h1-weight) clamp(32px,6vw,48px)/var(--h1-lead) var(--font-display);letter-spacing:var(--h1-track);margin:0}
+.sub{color:var(--muted);margin:calc(var(--space)/2) 0 0}
+.card{background:var(--surface);border:var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:calc(var(--space)*2.5)}
+.field{display:grid;grid-template-columns:1fr auto;gap:2px calc(var(--space)*1.5);align-items:center;margin-bottom:calc(var(--space)*2)}
 .field:last-child{margin-bottom:0}
 .field label{font-weight:600}
-.field .val{font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent)}
+.field .val{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-weight:600;color:var(--accent-text)}
 .field input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--accent)}
-.field input[type=number]{width:110px;font:inherit;padding:4px 8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--fg)}
-.field .hint{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+.field input[type=number]{width:130px;font:inherit;font-family:var(--font-mono);padding:var(--space);border-radius:calc(var(--radius)/2);border:var(--border);background:var(--bg);color:var(--ink)}
+.field .hint{grid-column:1/-1;font-size:13px;color:var(--muted)}
 .result{text-align:center}
 .result .label{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-.result .num{font-size:46px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;margin:4px 0}
-.result .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;border:1.5px solid currentColor}
-.rule{font-size:15px;border-left:4px solid var(--accent);padding:4px 0 4px 12px}
+.result .num{font-family:var(--font-display);font-size:var(--big-number,clamp(48px,8vw,72px));font-weight:var(--h1-weight);font-variant-numeric:tabular-nums;line-height:1.05;margin:var(--space) 0}
+.result .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px calc(var(--space)*1.5);border-radius:999px;border:1.5px solid currentColor}
+.rule{font-size:var(--body);border-left:4px solid var(--accent);padding:calc(var(--space)/2) 0 calc(var(--space)/2) calc(var(--space)*1.5);max-width:var(--measure)}
 </style>
 </head>
 <body>

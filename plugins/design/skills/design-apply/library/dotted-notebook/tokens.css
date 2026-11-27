@@ -1,0 +1,76 @@
+/* dotted-notebook: Dotted paper, handwritten labels on highlighter tags, thick outlines, sticky-note cards.
+ * Source: https://styles.refero.design
+ */
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Mulish:wght@400;600;800&family=Courier+Prime:wght@400;700&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#fbf6e9;
+  --surface:#fffdf6;
+  --ink:#1b1b1b;
+  --muted:#5a5648;
+  --line:#d8cfb2;
+  --accent:#ff8fb1; --accent-text:#e10044;
+  --accent-ink:#1b1b1b;
+  --ok:#1f7a3a;
+  --warn:#855500;
+  --bad:#b3261e;
+  --shadow:2px 3px 0 rgba(27,27,27,.18);
+  --hl-yellow:#ffe566;
+  --hl-pink:#ffb3cf;
+  --hl-blue:#a9d8ff;
+  --dots:radial-gradient(circle,rgba(27,27,27,.22) 1px,transparent 1.5px) 0 0/22px 22px;
+  --font-display:"Caveat Brush","Comic Sans MS",cursive;
+  --font-body:"Mulish",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"Courier Prime",ui-monospace,Menlo,monospace;
+  --h1:clamp(52px,8.5vw,120px);
+  --h1-weight:400;
+  --h1-track:0em;
+  --h1-lead:.98;
+  --body:17px;
+  --lead:1.6;
+  --measure:56ch;
+  --space:8px;
+  --radius:14px;
+  --border:2px solid var(--ink);
+  --ease:cubic-bezier(.3,1.4,.5,1);
+  --t-fast:140ms;
+  --t-med:320ms;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1d1b16;
+    --surface:#26231c;
+    --ink:#f4efe0;
+    --muted:#b9b29c;
+    --line:#3a362b;
+    --accent:#ff9dbb; --accent-text:var(--accent);
+    --accent-ink:#1d1b16;
+    --ok:#7fc08a;
+    --warn:#e0b04a;
+    --bad:#ee8c7d;
+    --shadow:2px 3px 0 rgba(0,0,0,.4);
+    --hl-yellow:#b89b1c;
+    --hl-pink:#b4527a;
+    --hl-blue:#4a7ca6;
+    --dots:radial-gradient(circle,rgba(244,239,224,.2) 1px,transparent 1.5px) 0 0/22px 22px;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1d1b16;
+  --surface:#26231c;
+  --ink:#f4efe0;
+  --muted:#b9b29c;
+  --line:#3a362b;
+  --accent:#ff9dbb; --accent-text:var(--accent);
+  --accent-ink:#1d1b16;
+  --ok:#7fc08a;
+  --warn:#e0b04a;
+  --bad:#ee8c7d;
+  --shadow:2px 3px 0 rgba(0,0,0,.4);
+  --hl-yellow:#b89b1c;
+  --hl-pink:#b4527a;
+  --hl-blue:#4a7ca6;
+  --dots:radial-gradient(circle,rgba(244,239,224,.2) 1px,transparent 1.5px) 0 0/22px 22px;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}
