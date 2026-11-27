@@ -15,7 +15,7 @@
   .kicker{font:500 13px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   h1{font-family:var(--font-display);font-size:var(--h1);font-weight:var(--h1-weight);
     letter-spacing:var(--h1-track);line-height:var(--h1-lead);margin:calc(var(--space)*3) 0 calc(var(--space)*4);max-width:14ch}
-  h1 em{font-style:normal;color:var(--accent)}
+  h1 em{font-style:normal;color:var(--accent-text,var(--accent))}
   .lead{font-size:calc(var(--body)*1.2);color:var(--muted);max-width:var(--measure)}
   .flow{margin:calc(var(--space)*12) 0;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--space)*4);position:relative}
   .flow::before{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:var(--line)}
@@ -54,13 +54,13 @@
 <main>
   <p class="kicker">How it works</p>
   <h1>A change goes live in <em>four steps</em></h1>
-  <p class="lead">You describe the change. An agent builds it on its own branch, two reviewers read it, and it merges when both are happy. Nothing reaches the live site until then.</p>
+  <p class="lead">An agent builds your change on its own branch. It goes live only after two reviewers approve.</p>
 
   <section class="flow" aria-label="The four steps">
-    <div class="step"><div class="dot">1</div><h2>Ask</h2><p>One sentence on what should change and why.</p></div>
-    <div class="step"><div class="dot">2</div><h2>Build</h2><p>The agent works on a branch, so the live site is untouched.</p></div>
-    <div class="step now"><div class="dot">3</div><h2>Review</h2><p>Two reviewers read the change and leave notes.</p></div>
-    <div class="step"><div class="dot">4</div><h2>Ship</h2><p>It merges and the site updates in about a minute.</p></div>
+    <div class="step"><div class="dot">1</div><h2>Ask</h2><p>Say what should change.</p></div>
+    <div class="step"><div class="dot">2</div><h2>Build</h2><p>An agent works on a branch.</p></div>
+    <div class="step now"><div class="dot">3</div><h2>Review</h2><p>Two reviewers read it.</p></div>
+    <div class="step"><div class="dot">4</div><h2>Ship</h2><p>It merges and goes live.</p></div>
   </section>
 
   <section class="split">

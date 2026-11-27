@@ -196,7 +196,7 @@ function measureInPage({ vw, vh }) {
   const SIDES = ['Top', 'Right', 'Bottom', 'Left'];
 
   // ---- Meaning colors from :root custom properties ----
-  const meaningNames = new Set(['--accent', '--accent-ink', '--ok', '--warn', '--bad']);
+  const meaningNames = new Set(['--accent', '--accent-ink', '--accent-text', '--ok', '--warn', '--bad']);
   const meaningRe = /^--(meaning-|state-|flow-|mark)/;
   const rootCs = getComputedStyle(html);
   for (let i = 0; i < rootCs.length; i++) if (meaningRe.test(rootCs[i])) meaningNames.add(rootCs[i]);

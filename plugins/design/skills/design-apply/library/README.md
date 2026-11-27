@@ -49,6 +49,7 @@ fine; missing ones are not.
 | `--line` | hairline color for rules and dividers |
 | `--accent` | the one color that means something (the action, the highlight) |
 | `--accent-ink` | text drawn on top of `--accent` |
+| `--accent-text` | the accent when it is used as text on `--bg` (a darker or lighter shade when the accent itself is too bright to read) |
 | `--ok` `--warn` `--bad` | state colors; they mean a state and nothing else |
 | `--font-display` | headline family |
 | `--font-body` | reading family |
@@ -70,7 +71,7 @@ Rules for the file:
   `:root:not([data-theme="light"])`, and again under `:root[data-theme="dark"]`.
   A system that is dark by nature does the reverse for light.
 - `prefers-reduced-motion: reduce` sets both durations to `0ms`.
-- `--ink` and `--muted` on `--bg`, and `--accent-ink` on `--accent`, pass WCAG AA (4.5:1).
+- `--ink` and `--muted` on `--bg`, `--accent-text` on `--bg`, and `--accent-ink` on `--accent`, pass WCAG AA (4.5:1).
 
 ## Using a system
 
@@ -78,4 +79,4 @@ Rules for the file:
 page with these names. To see systems side by side, `design-find` renders the sample page
 in each one:
 
-    node ../scripts/gallery.mjs --systems quiet-ledger,ink-and-hairline --out /tmp/gallery
+    node ../scripts/gallery.mjs --systems quiet-ledger,swiss-hairline --out <folder>
