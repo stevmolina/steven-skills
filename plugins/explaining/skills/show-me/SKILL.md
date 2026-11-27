@@ -1,11 +1,29 @@
 ---
 name: show-me
-description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
+description: Quick visual explainers, such as a concise diagram, code-shape sketch, or small HTML page that helps the user understand the current topic. Use when the user asks "show me", "with a picture", "diagram this", "visualize", "sketch it", or when an explanation has three or more connected parts. Load it with the Skill tool before drawing, since it holds the render check. For a crafted, detailed figure of how a system or component works ("draw how X works"), use a dedicated illustration skill such as anatomy when one is installed.
 ---
 
 > Local notes: if `~/.agents/skill-notes/show-me.md` exists, read it first. It holds this setup's private facts for this skill (names, brands, paths, house rules) and wins over the generic text here.
 
 Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
+
+## Find the subject first
+
+Before drawing, find the thing you are drawing. Look nearest first and stop as soon as you have it:
+
+1. The conversation and the working folder (`ls`, `grep -ril <name> .`).
+2. This skill's own plugin and the marketplace clone it was installed from. The skill's base
+   folder is printed when the skill loads. The marketplace clone is five folders up from it, in
+   `marketplaces/` (`<base>/../../../../../marketplaces/*/`), or in
+   `~/.claude/plugins/marketplaces/` (`$CLAUDE_CONFIG_DIR/plugins/marketplaces/` when that is
+   set). It holds the repo's own docs, for example `AGENT-SETUP.md` in steven-skills.
+3. The home folder, with a bounded search:
+   `find ~ -maxdepth 4 -iname '*<name>*' -not -path '*/node_modules/*' -not -path '*/.git/*'`.
+
+Never search the whole disk (`find /`). Still not found: draw what you have, and say in one line
+what you could not find. Do not stop to ask which one was meant.
+
+**A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color. If the user wants a crafted, detailed figure of a system rather than a quick sketch, and a figure skill such as anatomy is installed, hand over to it.
 
 - Show logic or an algorithm as pseudocode:
 
@@ -158,3 +176,23 @@ Run the check before showing.
 
 Save the result where the project keeps its learning material and open it in a browser to check
 it renders before showing it.
+
+## Look at it before you report
+
+Every picture gets checked by eye before you say it is done. Never report a diagram you have
+not seen rendered.
+
+1. Render it to an image. For an HTML or SVG file, take a screenshot with a browser tool or
+   headless Chrome (`chrome --headless --screenshot=out.png --window-size=1280,900 file.html`;
+   on macOS the binary is `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`).
+   For Mermaid, render it (`npx -y @mermaid-js/mermaid-cli -i in.mmd -o out.png`) or put it in
+   a small HTML page and screenshot that.
+2. Open the PNG and look at it. Check: it is boxes and arrows, not a list; every label is
+   readable and inside its box; no arrow points at nothing. Then trace the flow from the first
+   box to the last: every step has a visible arrow to the next one, including where a row
+   wraps to the next line. A missing or hidden arrow is a failure, not a minor flaw. Fix it (one
+   row, a vertical flow, or a drawn wrap connector) before you report. For an HTML page, also take one
+   screenshot at phone width (`--window-size=390,844`) and one per theme when the page has
+   light and dark, and look at each.
+3. Fix what is wrong and look again. Never report a flaw you saw as accepted. Say in your reply that you checked the render, and show
+   or link the screenshot.

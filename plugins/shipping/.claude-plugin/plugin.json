@@ -1,6 +1,6 @@
 {
   "name": "shipping",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Ship code safely: a ship pipeline with reviewers and proof, a grill session to stress-test a plan, and a CodeRabbit review loop.",
   "author": {
     "name": "Steven Molina",
