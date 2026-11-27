@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a change ships</title>
+<!-- The gallery script replaces the next line with a system's tokens.css. -->
+<style id="tokens">/*TOKENS*/</style>
+<style>
+  *{box-sizing:border-box;margin:0}
+  html{background:var(--bg)}
+  body{background:var(--bg);color:var(--ink);font:var(--body)/var(--lead) var(--font-body);
+    -webkit-font-smoothing:antialiased;padding:calc(var(--space)*10) calc(var(--space)*4) calc(var(--space)*12)}
+  main{max-width:1040px;margin:0 auto}
+  .kicker{font:500 13px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--font-display);font-size:var(--h1);font-weight:var(--h1-weight);
+    letter-spacing:var(--h1-track);line-height:var(--h1-lead);margin:calc(var(--space)*3) 0 calc(var(--space)*4);max-width:14ch}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lead{font-size:calc(var(--body)*1.2);color:var(--muted);max-width:var(--measure)}
+  .flow{margin:calc(var(--space)*12) 0;display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--space)*4);position:relative}
+  .flow::before{content:"";position:absolute;left:0;right:0;top:22px;height:1px;background:var(--line)}
+  .step{position:relative;transition:transform var(--t-med) var(--ease)}
+  .step:hover{transform:translateY(-3px)}
+  .dot{width:44px;height:44px;border-radius:50%;background:var(--bg);border:1px solid var(--line);
+    display:grid;place-items:center;font:600 15px var(--font-mono);color:var(--muted);position:relative}
+  .step.now .dot{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+  .step h2{font:600 calc(var(--body)*1.15)/1.25 var(--font-display);margin:calc(var(--space)*3) 0 var(--space)}
+  .step p{color:var(--muted);font-size:calc(var(--body)*.92)}
+  .split{display:grid;grid-template-columns:1.1fr 1fr;gap:calc(var(--space)*10);align-items:end;
+    padding-top:calc(var(--space)*10);border-top:1px solid var(--line)}
+  .big{font:var(--h1-weight) clamp(64px,10vw,140px)/.9 var(--font-display);letter-spacing:var(--h1-track)}
+  .big small{font-size:.32em;color:var(--muted);letter-spacing:0;margin-left:.2em}
+  .note{color:var(--muted);max-width:40ch;margin-top:calc(var(--space)*2)}
+  .rows{list-style:none;padding:0}
+  .rows li{display:flex;justify-content:space-between;gap:calc(var(--space)*2);padding:calc(var(--space)*2) 0;border-bottom:1px solid var(--line)}
+  .rows .ok{color:var(--ok)} .rows .warn{color:var(--warn)}
+  .cta{margin-top:calc(var(--space)*10);display:flex;gap:calc(var(--space)*3);align-items:center;flex-wrap:wrap}
+  .btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:var(--radius);
+    padding:calc(var(--space)*2) calc(var(--space)*4);font:600 16px var(--font-body);cursor:pointer;
+    transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease);box-shadow:var(--shadow)}
+  .btn:hover{transform:translateY(-1px)} .btn:active{transform:translateY(1px)}
+  .link{color:var(--ink);text-underline-offset:4px}
+  @media (max-width:720px){
+    body{padding:calc(var(--space)*6) calc(var(--space)*2) calc(var(--space)*8)}
+    .flow{grid-template-columns:1fr;gap:calc(var(--space)*5);margin:calc(var(--space)*8) 0}
+    .flow::before{left:22px;right:auto;top:0;bottom:0;width:1px;height:auto}
+    .step{display:grid;grid-template-columns:44px 1fr;column-gap:calc(var(--space)*3)}
+    .step h2{margin:8px 0 4px} .step p{grid-column:2}
+    .split{grid-template-columns:1fr;gap:calc(var(--space)*6)}
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">How it works</p>
+  <h1>A change goes live in <em>four steps</em></h1>
+  <p class="lead">You describe the change. An agent builds it on its own branch, two reviewers read it, and it merges when both are happy. Nothing reaches the live site until then.</p>
+
+  <section class="flow" aria-label="The four steps">
+    <div class="step"><div class="dot">1</div><h2>Ask</h2><p>One sentence on what should change and why.</p></div>
+    <div class="step"><div class="dot">2</div><h2>Build</h2><p>The agent works on a branch, so the live site is untouched.</p></div>
+    <div class="step now"><div class="dot">3</div><h2>Review</h2><p>Two reviewers read the change and leave notes.</p></div>
+    <div class="step"><div class="dot">4</div><h2>Ship</h2><p>It merges and the site updates in about a minute.</p></div>
+  </section>
+
+  <section class="split">
+    <div>
+      <div class="big">38<small>min</small></div>
+      <p class="note">Median time from the ask to live, over the last 120 changes.</p>
+    </div>
+    <ul class="rows">
+      <li><span>Tests</span><span class="ok">Passed</span></li>
+      <li><span>Review notes</span><span>2 fixed</span></li>
+      <li><span>Preview link</span><span class="warn">Expires in 6 h</span></li>
+    </ul>
+  </section>
+
+  <div class="cta"><button class="btn">Start a change</button><a class="link" href="#">See a finished one</a></div>
+</main>
+</body>
+</html>
