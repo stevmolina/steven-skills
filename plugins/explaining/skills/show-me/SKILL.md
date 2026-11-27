@@ -1,11 +1,13 @@
 ---
 name: show-me
-description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
+description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. Use when the user asks to see how something works, for example "with a picture", "show me", "draw how X works", "diagram this", "visualize", or when an explanation has three or more connected parts.
 ---
 
 > Local notes: if `~/.agents/skill-notes/show-me.md` exists, read it first. It holds this setup's private facts for this skill (names, brands, paths, house rules) and wins over the generic text here.
 
 Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
+
+**A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color.
 
 - Show logic or an algorithm as pseudocode:
 
@@ -154,3 +156,20 @@ it would look at home next to Brilliant or Linear.
 
 Save the result where the project keeps its learning material and open it in a browser to check
 it renders before showing it.
+
+## Look at it before you report
+
+Every picture gets checked by eye before you say it is done. Never report a diagram you have
+not seen rendered.
+
+1. Render it to an image. For an HTML or SVG file, take a screenshot with a browser tool or
+   headless Chrome (`chrome --headless --screenshot=out.png --window-size=1280,900 file.html`;
+   on macOS the binary is `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`).
+   For Mermaid, render it (`npx -y @mermaid-js/mermaid-cli -i in.mmd -o out.png`) or put it in
+   a small HTML page and screenshot that.
+2. Open the PNG and look at it. Check: it is boxes and arrows, not a list; every label is
+   readable and inside its box; no arrow points at nothing. For an HTML page, also take one
+   screenshot at phone width (`--window-size=390,844`) and one per theme when the page has
+   light and dark, and look at each.
+3. Fix what is wrong and look again. Say in your reply that you checked the render, and show
+   or link the screenshot.

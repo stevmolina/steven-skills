@@ -16,7 +16,7 @@
       "name": "shipping",
       "source": "./plugins/shipping",
       "description": "Ship code safely: a ship pipeline with reviewers and proof, a grill session to stress-test a plan, and a CodeRabbit review loop.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "shipping",
       "tags": [
         "shipping",
@@ -29,7 +29,7 @@
       "name": "explaining",
       "source": "./plugins/explaining",
       "description": "Explain things so they land: visual explainers (show-me), plain rewrites (simpler), and bare copy-ready drafts (raw).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "explaining",
       "tags": [
         "explaining",
