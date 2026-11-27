@@ -138,6 +138,8 @@ more connected parts, build a visual without being asked.
 
 Start from a template in `templates/`. Each is one HTML file, light and dark, no build step.
 Edit the data object at the top; use real names and numbers only.
+Each template carries a `<style id="tokens">` slot as its first style element; to restyle it,
+replace that slot's contents with the chosen system's `tokens.css`.
 
 Never ship the plain default look. Dress the page with `design-apply`: for a map or diagram
 it usually picks control-room, for a calculator explorable, for a game playground, for a
