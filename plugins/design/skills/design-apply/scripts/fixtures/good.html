@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rebates, simply</title>
+<style>
+  :root{--bg:#fbfaf7;--surface:#f3f1ec;--ink:#1d1c1a;--muted:#5f5b54;--line:#e2ded6;
+    --accent:#2b5bd7;--accent-ink:#ffffff;--ok:#1f7a4d;--warn:#9a5b00;--bad:#b3261e;
+    --font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--mono:ui-monospace,Menlo,monospace}
+  @media (prefers-color-scheme:dark){:root{--bg:#141413;--surface:#1c1c1a;--ink:#eeece7;--muted:#a8a49b;
+    --line:#2e2d2a;--accent:#8fb0ff;--accent-ink:#0e1530;--ok:#6fd39f;--warn:#f0b65b;--bad:#ff8a80}}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font:17px/1.6 var(--font);padding:96px 24px}
+  main{max-width:880px;margin:0 auto}
+  .kicker{font:500 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.02em;margin:20px 0 24px;max-width:14ch}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lead{color:var(--muted);font-size:20px;max-width:58ch}
+  ol{list-style:none;padding:0;margin:72px 0;display:grid;gap:40px}
+  li{display:grid;grid-template-columns:56px 1fr;border-top:1px solid var(--line);padding-top:20px}
+  li b{font:600 15px var(--mono);color:var(--muted)}
+  li h2{font-size:21px;margin-bottom:6px}
+  li p{color:var(--muted);max-width:56ch}
+  .big{font-size:96px;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .big small{font-size:28px;color:var(--muted)}
+  .ok{color:var(--ok)}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">How rebates work</p>
+  <h1>A rebate is money that <em>comes back</em></h1>
+  <p class="lead">A pharmacy buys a drug at list price. If it buys enough, the maker returns part of the price at the end of the quarter.</p>
+  <ol>
+    <li><b>01</b><div><h2>Buy</h2><p>The pharmacy orders from its wholesaler, as usual.</p></div></li>
+    <li><b>02</b><div><h2>Count</h2><p>Each quarter the maker counts what was bought.</p></div></li>
+    <li><b>03</b><div><h2>Pay back</h2><p>Above the target, a share of the spend is returned.</p></div></li>
+  </ol>
+  <p class="big">4.2<small>%</small></p>
+  <p class="lead">Average rebate last quarter. <span class="ok">On target.</span> <a href="#">See the math</a></p>
+</main>
+</body>
+</html>

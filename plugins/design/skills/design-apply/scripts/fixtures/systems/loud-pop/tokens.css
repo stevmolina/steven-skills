@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Nunito:wght@400;700&family=DM+Mono:wght@500&display=swap");
+:root{
+  --bg:#fff6ea;--surface:#ffe9d2;--ink:#2a1630;--muted:#6a4f63;--line:#f0d6c2;
+  --accent:#d6246e;--accent-ink:#ffffff;--ok:#16794a;--warn:#9c5200;--bad:#b4221b;
+  --flow-1:#ff8a00;--flow-2:#3d5afe;
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif;--font-body:"Nunito",system-ui,sans-serif;--font-mono:"DM Mono",ui-monospace,monospace;
+  --h1:clamp(46px,7vw,96px);--h1-weight:800;--h1-track:-0.03em;--h1-lead:.95;
+  --body:17px;--lead:1.55;--measure:58ch;--space:8px;--radius:18px;
+  --border:2px solid var(--ink);--shadow:4px 4px 0 var(--ink);
+  --ease:cubic-bezier(.34,1.56,.64,1);--t-fast:160ms;--t-med:320ms;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1d1020;--surface:#2a1830;--ink:#fff1f6;--muted:#d2b4c6;--line:#43283f;
+  --accent:#ff5c9d;--accent-ink:#1d1020;--ok:#5fe0a0;--warn:#ffc061;--bad:#ff8378;}}
+:root[data-theme="dark"]{
+  --bg:#1d1020;--surface:#2a1830;--ink:#fff1f6;--muted:#d2b4c6;--line:#43283f;
+  --accent:#ff5c9d;--accent-ink:#1d1020;--ok:#5fe0a0;--warn:#ffc061;--bad:#ff8378;}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}
