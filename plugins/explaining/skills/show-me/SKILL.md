@@ -23,7 +23,7 @@ Before drawing, find the thing you are drawing. Look nearest first and stop as s
 Never search the whole disk (`find /`). Still not found: draw what you have, and say in one line
 what you could not find. Do not stop to ask which one was meant.
 
-**A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color.
+**A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color. If the user wants a crafted, detailed figure of a system rather than a quick sketch, and a figure skill such as anatomy is installed, hand over to it.
 
 - Show logic or an algorithm as pseudocode:
 
