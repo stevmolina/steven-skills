@@ -56,8 +56,9 @@ Read the chosen `DESIGN.md` in full: its Do and Don't lists are part of the syst
 - Follow `guidelines.md` (or the personal guidelines file your local notes name). The
   short version: one idea per screen, hierarchy from type not boxes, one accent that
   means something, plain words, calm motion, light and dark, a real phone layout.
-- For a diagram, draw the real mechanism with real names, in SVG, using the tokens.
-  Prefer lines and type to a box per step.
+- For a diagram, draw the real mechanism with real names, in SVG, using the tokens:
+  boxes and arrows, 8 boxes or fewer, every arrow labelled. Keep the page around it free of
+  cards: the drawing is the one framed thing.
 - For a Remotion video, turn the tokens into the video's `theme.ts`.
 - Vary at least one of type, accent or layout from the system's sample so pages do not
   look cloned.
@@ -72,7 +73,8 @@ It renders the page at desktop and phone, light and dark, and reports:
 - words in the first view (pass 90 desktop, 70 phone)
 - code chips per screen (pass 3 or fewer)
 - text below WCAG AA contrast (pass 0)
-- bordered or filled boxes per screen (pass 3 or fewer)
+- bordered or filled boxes per screen, outside drawings (pass 3 or fewer)
+- boxes inside one SVG drawing (pass 8 or fewer)
 
 Fix every fail and rerun until it exits 0. Warnings are allowed when you can say why.
 When a fail is the point (a loud brand, a card gallery), add

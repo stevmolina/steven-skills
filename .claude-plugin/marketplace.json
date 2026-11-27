@@ -29,7 +29,7 @@
       "name": "explaining",
       "source": "./plugins/explaining",
       "description": "Explain things so they land: visual explainers (show-me), plain rewrites (simpler), and bare copy-ready drafts (raw).",
-      "version": "1.2.1",
+      "version": "1.3.0",
       "category": "explaining",
       "tags": [
         "explaining",
@@ -56,7 +56,7 @@
       "name": "video",
       "source": "./plugins/video",
       "description": "Product demo and feature films with Remotion: a film kit, a recipe, and a review checklist.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "category": "video",
       "tags": [
         "video",

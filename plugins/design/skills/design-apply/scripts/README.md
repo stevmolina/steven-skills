@@ -20,6 +20,7 @@ one fail, 2 means the script could not run.
 | chips | inline code chips (`code`, `kbd`, `samp`, or mono text with a fill or border) on one screen | <=3 | <=6 | >6 |
 | contrast | text below WCAG AA (4.5:1, or 3:1 for text 24px+ or 18.66px+ bold) | 0 | | >=1 |
 | boxes | bordered, ringed, filled or lifted boxes of 2500px² or more on one screen | <=3 | 4-5 | >=6 |
+| diagram boxes | outlined or filled rectangles inside one SVG drawing | <=8 | | >=9 |
 
 What counts as meaning for colors: anything close to the `:root` tokens `--accent`,
 `--accent-ink`, `--accent-text`, `--ok`, `--warn`, `--bad`, or any token named `--meaning-*`, `--state-*`,

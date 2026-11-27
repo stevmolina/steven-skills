@@ -140,7 +140,7 @@ function expandSkill(command: string): string {
 Bash(open path/to/show-me-{description}.html)
 ```
 
-- **Design before you show.** Any HTML visual goes through the `design-apply` skill (design plugin) first: it picks a design system (the product's brand, else the library match for the page's purpose), you build with its tokens, and its automatic check must pass before the user sees the page. Lean on type, space and one accent; draw the idea, and do not put each step in its own bordered box or a code chip in every line. Without the design plugin, follow the same leanings and match the product's colors, type and spacing.
+- **Design before you show.** Any HTML visual goes through the `design-apply` skill (design plugin) first: it picks a design system (the product's brand, else the library match for the page's purpose), you build with its tokens, and its automatic check must pass before the user sees the page. Lean on type, space and one accent. The drawing itself is boxes and arrows (8 or fewer); the page around it is not: no bordered card per section or step, no code chip in every line. Without the design plugin, follow the same leanings and match the product's colors, type and spacing.
 
 - Place each visual next to the short text it supports. Keep only the calls, files, props, states, and boundaries needed to answer the user's current question.
 
@@ -194,5 +194,6 @@ not seen rendered.
    row, a vertical flow, or a drawn wrap connector) before you report. For an HTML page, also take one
    screenshot at phone width (`--window-size=390,844`) and one per theme when the page has
    light and dark, and look at each.
-3. Fix what is wrong and look again. Never report a flaw you saw as accepted. Say in your reply that you checked the render, and show
+3. For an HTML page, also run `design-apply`'s check (`scripts/check.mjs` in that skill) and fix every fail.
+4. Fix what is wrong and look again. Never report a flaw you saw as accepted. Say in your reply that you checked the render, and show
    or link the screenshot.
