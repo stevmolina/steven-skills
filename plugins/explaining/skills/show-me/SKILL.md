@@ -1,6 +1,6 @@
 ---
 name: show-me
-description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. Use when the user asks to see how something works, for example "draw how X works", "with a picture", "show me", "diagram this", "visualize", or when an explanation has three or more connected parts. Load it with the Skill tool before drawing, since it holds the render check.
+description: Quick visual explainers, such as a concise diagram, code-shape sketch, or small HTML page that helps the user understand the current topic. Use when the user asks "show me", "with a picture", "diagram this", "visualize", "sketch it", or when an explanation has three or more connected parts. Load it with the Skill tool before drawing, since it holds the render check. For a crafted, detailed figure of how a system or component works ("draw how X works"), use a dedicated illustration skill such as anatomy when one is installed.
 ---
 
 > Local notes: if `~/.agents/skill-notes/show-me.md` exists, read it first. It holds this setup's private facts for this skill (names, brands, paths, house rules) and wins over the generic text here.

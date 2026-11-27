@@ -29,7 +29,7 @@
       "name": "explaining",
       "source": "./plugins/explaining",
       "description": "Explain things so they land: visual explainers (show-me), plain rewrites (simpler), and bare copy-ready drafts (raw).",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "category": "explaining",
       "tags": [
         "explaining",
