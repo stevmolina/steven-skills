@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How our pipeline works</title>
+<style>
+  body{font-family:system-ui,sans-serif;background:#f7f7f8;color:#333;margin:0;padding:32px}
+  h1{font-size:32px;color:#7c3aed}
+  .intro{color:#b5b5b5}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .card{border:1px solid #d9d9e0;border-radius:12px;background:#fff;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .card h3{margin:0 0 6px;font-size:18px}
+  .card .inner{border:1px solid #eee;border-radius:8px;padding:10px;margin-top:8px;background:#fafafa}
+  .s1 h3{color:#ef4444} .s2 h3{color:#10b981} .s3 h3{color:#f59e0b} .s4 h3{color:#3b82f6}
+  .s5 h3{color:#ec4899} .s6 h3{color:#14b8a6}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#ede9fe;color:#6d28d9;font-size:12px}
+  code{background:#eef;border:1px solid #dde;border-radius:4px;padding:1px 4px;font-size:13px}
+  p{color:#a0a0a0;font-size:14px}
+</style>
+</head>
+<body>
+<h1>How our pipeline works</h1>
+<p class="intro">This explainer walks through every stage of the system so you can understand exactly what happens to each request from the moment it arrives until the response is written back to the client, including retries, caching and logging.</p>
+<div class="grid">
+  <div class="card s1"><h3>Step 1: Ingest</h3><span class="pill">input</span><p>The <code>ingest()</code> worker reads <code>queue.jobs</code> and writes to <code>raw_events</code> using <code>BATCH_SIZE</code>.</p><div class="inner"><p>Config lives in <code>config/ingest.yaml</code> and <code>env.INGEST_URL</code>.</p></div></div>
+  <div class="card s2"><h3>Step 2: Validate</h3><span class="pill">check</span><p>Then <code>validate()</code> calls <code>schema.parse</code> on each <code>event</code> and drops <code>null</code> rows.</p><div class="inner"><p>Errors go to <code>dead_letter</code> via <code>dlq.push()</code>.</p></div></div>
+  <div class="card s3"><h3>Step 3: Enrich</h3><span class="pill">transform</span><p>The <code>enrich()</code> step joins <code>users</code> with <code>accounts</code> on <code>user_id</code>.</p><div class="inner"><p>Cache key is <code>enrich:v2:{id}</code> with <code>TTL=300</code>.</p></div></div>
+  <div class="card s4"><h3>Step 4: Store</h3><span class="pill">output</span><p>Finally <code>store()</code> upserts into <code>events_clean</code> and emits <code>event.stored</code>.</p><div class="inner"><p>Metrics: <code>store.latency_ms</code> and <code>store.errors</code>.</p></div></div>
+  <div class="card s5"><h3>Step 5: Notify</h3><span class="pill">webhook</span><p>The <code>notify()</code> job posts to <code>WEBHOOK_URL</code> with <code>retry=3</code>.</p><div class="inner"><p>Signed with <code>HMAC_SHA256</code>.</p></div></div>
+  <div class="card s6"><h3>Step 6: Archive</h3><span class="pill">cold</span><p>Nightly <code>archive()</code> moves rows older than <code>90d</code> to <code>s3://archive</code>.</p><div class="inner"><p>Runs at <code>02:00 UTC</code>.</p></div></div>
+</div>
+</body>
+</html>

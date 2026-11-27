@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap");
+:root{
+  --bg:#faf8f3;--surface:#f2efe7;--ink:#1f1d1a;--muted:#5e5a52;--line:#e1ddd2;
+  --accent:#2448c9;--accent-ink:#ffffff;--ok:#1e7448;--warn:#965400;--bad:#b0261c;
+  --font-display:"Newsreader",Georgia,serif;--font-body:"Inter",system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --h1:clamp(44px,6.4vw,84px);--h1-weight:500;--h1-track:-0.02em;--h1-lead:1.02;
+  --body:17px;--lead:1.6;--measure:62ch;--space:8px;--radius:6px;
+  --border:1px solid var(--line);--shadow:none;
+  --ease:cubic-bezier(.2,.7,.2,1);--t-fast:140ms;--t-med:260ms;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151412;--surface:#1d1c19;--ink:#efece5;--muted:#aaa599;--line:#2f2d29;
+  --accent:#93acff;--accent-ink:#0d1533;--ok:#72d3a0;--warn:#f1b860;--bad:#ff8c82;}}
+:root[data-theme="dark"]{
+  --bg:#151412;--surface:#1d1c19;--ink:#efece5;--muted:#aaa599;--line:#2f2d29;
+  --accent:#93acff;--accent-ink:#0d1533;--ok:#72d3a0;--warn:#f1b860;--bad:#ff8c82;}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}
