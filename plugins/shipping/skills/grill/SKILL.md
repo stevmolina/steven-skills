@@ -1,8 +1,7 @@
 ---
 name: grill
-description: Stress-test a plan before any code, then emit a paste-ready implement prompt. Use when the user says grill, /grill, /grill-me, grill me, or grill this before implementing.
+description: Stress-test a plan before any code is written, a few questions per round with a recommended answer each, then emit a paste-ready implement prompt. Use whenever the user wants a plan, design or decision challenged before building, in plain words or as a command, for example "grill this plan", "grill me", "stress-test this", "poke holes in this", "what am I missing", "challenge this before we build", /grill or /grill-me.
 argument-hint: "[quick] what to grill"
-disable-model-invocation: true
 ---
 
 > Local notes: if `~/.agents/skill-notes/grill.md` exists, read it first. It holds this setup's private facts for this skill (names, brands, paths, house rules) and wins over the generic text here.
