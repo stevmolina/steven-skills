@@ -1,11 +1,27 @@
 ---
 name: show-me
-description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. Use when the user asks to see how something works, for example "with a picture", "show me", "draw how X works", "diagram this", "visualize", or when an explanation has three or more connected parts.
+description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. Use when the user asks to see how something works, for example "draw how X works", "with a picture", "show me", "diagram this", "visualize", or when an explanation has three or more connected parts. Load it with the Skill tool before drawing, since it holds the render check.
 ---
 
 > Local notes: if `~/.agents/skill-notes/show-me.md` exists, read it first. It holds this setup's private facts for this skill (names, brands, paths, house rules) and wins over the generic text here.
 
 Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
+
+## Find the subject first
+
+Before drawing, find the thing you are drawing. Look nearest first and stop as soon as you have it:
+
+1. The conversation and the working folder (`ls`, `grep -ril <name> .`).
+2. This skill's own plugin and the marketplace clone it was installed from. The skill's base
+   folder is printed when the skill loads. The marketplace clone is five folders up from it, in
+   `marketplaces/` (`<base>/../../../../../marketplaces/*/`), or in
+   `~/.claude/plugins/marketplaces/` (`$CLAUDE_CONFIG_DIR/plugins/marketplaces/` when that is
+   set). It holds the repo's own docs, for example `AGENT-SETUP.md` in steven-skills.
+3. The home folder, with a bounded search:
+   `find ~ -maxdepth 4 -iname '*<name>*' -not -path '*/node_modules/*' -not -path '*/.git/*'`.
+
+Never search the whole disk (`find /`). Still not found: draw what you have, and say in one line
+what you could not find. Do not stop to ask which one was meant.
 
 **A picture means a drawing.** When the user asks for a picture, a diagram, a drawing, or "how X works" visually, draw boxes and arrows: a Mermaid `flowchart` or `sequenceDiagram`, or an HTML/SVG figure. A numbered list of steps, a bullet outline or a file tree is not a picture, even inside a code block. Keep it to 8 boxes or fewer, label every arrow with what moves along it, and add a key for any symbol or color.
 
@@ -168,8 +184,11 @@ not seen rendered.
    For Mermaid, render it (`npx -y @mermaid-js/mermaid-cli -i in.mmd -o out.png`) or put it in
    a small HTML page and screenshot that.
 2. Open the PNG and look at it. Check: it is boxes and arrows, not a list; every label is
-   readable and inside its box; no arrow points at nothing. For an HTML page, also take one
+   readable and inside its box; no arrow points at nothing. Then trace the flow from the first
+   box to the last: every step has a visible arrow to the next one, including where a row
+   wraps to the next line. A missing or hidden arrow is a failure, not a minor flaw. Fix it (one
+   row, a vertical flow, or a drawn wrap connector) before you report. For an HTML page, also take one
    screenshot at phone width (`--window-size=390,844`) and one per theme when the page has
    light and dark, and look at each.
-3. Fix what is wrong and look again. Say in your reply that you checked the render, and show
+3. Fix what is wrong and look again. Never report a flaw you saw as accepted. Say in your reply that you checked the render, and show
    or link the screenshot.
