@@ -48,8 +48,8 @@ Read the chosen `DESIGN.md` in full: its Do and Don't lists are part of the syst
 
 ## 2. Build with the tokens
 
-- Copy the system's `tokens.css` into the page as its own first `<style>` block in the
-  head (its font `@import` only works at the top of a stylesheet), or link it in a project
+- Copy the system's `tokens.css` into the page as its own first `<style id="tokens">`
+  block in the head (the id lets the gallery swap systems) (its font `@import` only works at the top of a stylesheet), or link it in a project
   that has a build.
 - Use only the contract names (`--bg`, `--ink`, `--accent`, `--font-display`, `--space`...)
   in the page's own CSS. No new hex values except inside the token block.

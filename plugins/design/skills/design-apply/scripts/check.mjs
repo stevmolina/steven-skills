@@ -450,7 +450,10 @@ function measureInPage({ vw, vh }) {
     const sides = SIDES.filter((side) => {
       const st = s[`border${side}Style`];
       const c = rgba(s[`border${side}Color`]);
-      return parseFloat(s[`border${side}Width`]) >= 1 && st !== 'none' && st !== 'hidden' && c && c[3] > 0.1;
+      if (!(parseFloat(s[`border${side}Width`]) >= 1 && st !== 'none' && st !== 'hidden' && c && c[3] > 0.02)) return false;
+      // Visible means the line differs from what it sits on, so faint hairlines count too.
+      const under = effBg(el.parentElement || el).rgb;
+      return dE(oklab(over(c, under)), oklab(under)) > 0.01;
     }).length;
     if (sides >= 3) why.push(`border ${sides} sides`);
     const shadows = parseShadows(s.boxShadow);
@@ -463,6 +466,27 @@ function measureInPage({ vw, vh }) {
       if (dE(oklab(mine), oklab(parentBg.rgb)) > 0.012) why.push('filled card');
     }
     if (radius >= 4 && shadows.some((sh) => !sh.inset && (sh.blur > 0 || sh.y !== 0) && sh.alpha > 0.05)) why.push('lifted card');
+    if (!why.length) continue;
+    boxes.push({ ...docRect(el), sel: sel(el), why: why.join(', ') });
+  }
+  // SVG boxes: a diagram that draws a rectangle per step is the same look as bordered divs.
+  for (const el of all) {
+    if (!(el instanceof SVGElement) || el.tagName !== 'rect') continue;
+    if (!isVisible(el)) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width * r.height < 2500) continue;
+    const svg = el.ownerSVGElement;
+    if (svg) {
+      const sr = svg.getBoundingClientRect();
+      if (r.width * r.height >= 0.8 * sr.width * sr.height) continue; // the drawing's own background
+    }
+    const s = cs(el);
+    const under = effBg(svg || el.parentElement).rgb;
+    const why = [];
+    const st = s.stroke && s.stroke !== 'none' ? rgba(s.stroke) : null;
+    if (st && parseFloat(s.strokeWidth) >= 1 && dE(oklab(over(st, under)), oklab(under)) > 0.01) why.push('svg outline');
+    const fl = s.fill && s.fill !== 'none' ? rgba(s.fill) : null;
+    if (fl && fl[3] > 0.02 && dE(oklab(over(fl, under)), oklab(under)) > 0.012) why.push('svg filled box');
     if (!why.length) continue;
     boxes.push({ ...docRect(el), sel: sel(el), why: why.join(', ') });
   }
