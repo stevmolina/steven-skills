@@ -17,6 +17,7 @@ Plugin skills are namespaced, so `ship` runs as `/shipping:ship`.
 | `explaining` | `show-me` (visual explainers), `simpler` (plain rewrite), `raw` (bare, copy-ready draft) |
 | `working-with-agents` | `handoff` (start a fresh thread with full context), `preflight` (test every login before a task), `capture-skill` (turn a workflow into a skill), `manage-project-brain` (a knowledge repo standard) |
 | `video` | `product-demo-video` (Remotion demo and feature films, with a film kit) |
+| `design` | `design-apply` (dress any page in a design system and check it), `design-find` (side-by-side gallery of candidates), `design-method` (brief to built page); a library of 12 named systems |
 
 ## Use without plugins
 

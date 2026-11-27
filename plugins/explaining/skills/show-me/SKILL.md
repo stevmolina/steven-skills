@@ -116,11 +116,13 @@ function expandSkill(command: string): string {
 }
 ```
 
-- For a visual UI, layout, state comparison, or concept too dense for Mermaid, write one focused HTML file, a diagram, an infographic, or a short slide deck, whichever fits the point. Match the product's colors, type, spacing, and components; use real labels and data; support desktop and mobile. Then open it for the user:
+- For a visual UI, layout, state comparison, or concept too dense for Mermaid, write one focused HTML file, a diagram, an infographic, or a short slide deck, whichever fits the point. Use real labels and data; support desktop and mobile. Then open it for the user:
 
 ```
 Bash(open path/to/show-me-{description}.html)
 ```
+
+- **Design before you show.** Any HTML visual goes through the `design-apply` skill (design plugin) first: it picks a design system (the product's brand, else the library match for the page's purpose), you build with its tokens, and its automatic check must pass before the user sees the page. Lean on type, space and one accent; draw the idea, and do not put each step in its own bordered box or a code chip in every line. Without the design plugin, follow the same leanings and match the product's colors, type and spacing.
 
 - Place each visual next to the short text it supports. Keep only the calls, files, props, states, and boundaries needed to answer the user's current question.
 
@@ -137,13 +139,13 @@ more connected parts, build a visual without being asked.
 Start from a template in `templates/`. Each is one HTML file, light and dark, no build step.
 Edit the data object at the top; use real names and numbers only.
 
-Never ship the plain default look. Follow your design method and dress the page in the
-style family that fits what it shows (`styles/README.md`): Control Room for a map or diagram,
-Explorable for a calculator, Playground for a game, Editorial for an explainer or story. Copy the
-family's tokens into the page, pull one fresh reference, and vary type, accent or layout so no
-two pages look cloned. Blend in the client's product brand when the lesson is about their
-product. Add motion and interaction by default and redraw the layout for the phone. The bar:
-it would look at home next to Brilliant or Linear.
+Never ship the plain default look. Dress the page with `design-apply`: for a map or diagram
+it usually picks control-room, for a calculator explorable, for a game playground, for a
+story editorial (these four used to live in this skill's `styles/` folder and are now
+systems in the design library). Pull one fresh reference and vary type, accent or layout so
+no two pages look cloned. Blend in the client's product brand when the lesson is about
+their product. Add motion and interaction by default and redraw the layout for the phone.
+Run the check before showing.
 
 - `game.html`: the learner plays a person in the business. Intro screen, levels, score, a "why"
   card with the real rule after each mistake, and quips for a light tone.

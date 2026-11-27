@@ -63,6 +63,20 @@
         "remotion",
         "demo"
       ]
+    },
+    {
+      "name": "design",
+      "source": "./plugins/design",
+      "description": "Pages that do not look generic: a library of named design systems, a finder that compares candidates side by side, an apply step with an automatic check, and the full design method.",
+      "version": "1.0.0",
+      "category": "design",
+      "tags": [
+        "design",
+        "design-systems",
+        "tokens",
+        "ui",
+        "explainers"
+      ]
     }
   ]
 }

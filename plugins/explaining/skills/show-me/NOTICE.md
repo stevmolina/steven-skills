@@ -1,4 +1,4 @@
-Based on show-me from https://github.com/humanlayer/skills (MIT). Changes: added styles/, templates/ and the business-topics section.
+Based on show-me from https://github.com/humanlayer/skills (MIT). Changes: added templates/, the business-topics section and the design-apply step (its four former style families now live in the design plugin library).
 
 MIT License
 
