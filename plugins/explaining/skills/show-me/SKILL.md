@@ -163,7 +163,8 @@ Every picture gets checked by eye before you say it is done. Never report a diag
 not seen rendered.
 
 1. Render it to an image. For an HTML or SVG file, take a screenshot with a browser tool or
-   headless Chrome (`chrome --headless --screenshot=out.png --window-size=1280,900 file.html`).
+   headless Chrome (`chrome --headless --screenshot=out.png --window-size=1280,900 file.html`;
+   on macOS the binary is `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`).
    For Mermaid, render it (`npx -y @mermaid-js/mermaid-cli -i in.mmd -o out.png`) or put it in
    a small HTML page and screenshot that.
 2. Open the PNG and look at it. Check: it is boxes and arrows, not a list; every label is
