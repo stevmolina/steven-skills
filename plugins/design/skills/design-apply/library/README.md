@@ -26,6 +26,7 @@ mood: Warm paper, one ink accent, numbers set like a ledger.
 fits: [explainer, report, calculator]     # page purposes, see below
 family: quiet-minimal          # quiet-minimal | product-saas | playful | editorial-luxury | agency-motion | notebook
 loud: false                    # true when many colors are the point (the check then allows them)
+scheme: light                  # light or dark: the mode the system is at its best in (the preview uses it)
 source: https://example.com    # the site or Refero style it was drawn from
 source_note: Refero Styles DESIGN.md, pulled 2026-11-27
 ---

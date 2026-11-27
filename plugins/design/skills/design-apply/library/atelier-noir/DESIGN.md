@@ -4,6 +4,7 @@ mood: Huge thin type on black, porcelain text, a trace of champagne, almost noth
 fits: [landing, product-page, video, report]
 family: editorial-luxury
 loud: false
+scheme: dark
 source: https://www.apple.com/mac-pro/
 source_note: Refero Styles DESIGN.md (obsidian stage, porcelain text, hairline steel borders, one concentrated accent), pulled 2026-11-27; luxury mood also from the fashion references
 ---

@@ -45,7 +45,7 @@ function rawData(full) {
   let depth = 0;
   for (let j = i + 6; j < full.length; j++) {
     const c = full[j];
-    if (c === '"') { j++; while (full[j] !== '"') { if (full[j] === '\\') j++; j++; } continue; }
+    if (c === '"') { j++; while (j < full.length && full[j] !== '"') { if (full[j] === '\\') j++; j++; } continue; }
     if (c === '{') depth++;
     if (c === '}' && --depth === 0) return JSON.parse(full.slice(i + 6, j + 1));
   }
@@ -75,7 +75,8 @@ async function get(link) {
   const url = link.startsWith('http') ? link : `${BASE}/style/${link}`;
   const html = await fetchText(url);
   const full = payload(html);
-  const raw = rawData(full) || {};
+  const raw = rawData(full);
+  if (!raw) throw new Error(`no style data found at ${url} (wrong link, or the site changed: open it in a browser)`);
   const lines = [`# ${title(html)}`, '', `Source: ${url}`, ''];
   const colors = (raw.colors?.tokens || []).slice(0, 14);
   if (colors.length) {

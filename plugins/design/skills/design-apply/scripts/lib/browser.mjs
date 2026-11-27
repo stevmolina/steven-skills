@@ -104,5 +104,6 @@ export async function launchBrowser(options = {}) {
     errors.push(e);
   }
   const first = errors.map((e) => String(e.message || e).split('\n')[0]).join(' | ');
-  throw new Error(`could not launch Chromium: ${first}`);
+  const hint = process.platform === 'linux' ? ' (on Linux, system libraries may be missing: run `npx playwright install-deps chromium`)' : '';
+  throw new Error(`could not launch Chromium: ${first}${hint}`);
 }

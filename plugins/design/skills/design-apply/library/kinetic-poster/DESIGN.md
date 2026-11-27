@@ -4,6 +4,7 @@ mood: Poster-scale type on near-black, cream text, acid green, discipline tags i
 fits: [landing, video, product-page]
 family: agency-motion
 loud: false
+scheme: dark
 source: https://gsap.com
 source_note: Refero Styles DESIGN.md (near-black canvas, cream text, green brand accent, colored discipline labels), pulled 2026-11-27; agency feel also from the saved agency references
 ---

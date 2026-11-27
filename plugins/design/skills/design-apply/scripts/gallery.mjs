@@ -304,7 +304,8 @@ async function main() {
       const check = await checkTarget(htmlPath, { browser });
       if (args.preview) {
         const dest = path.join(sys.dir, 'preview.png');
-        fs.copyFileSync(path.join(args.out, shots.desktopLight), dest);
+        const own = sys.fm.scheme === 'dark' ? shots.desktopDark : shots.desktopLight;
+        fs.copyFileSync(path.join(args.out, own), dest);
         const kb = Math.round(fs.statSync(dest).size / 1024);
         if (kb > 400) console.error(`note: ${dest} is ${kb} KB (target under 400 KB)`);
       }
@@ -351,4 +352,10 @@ async function main() {
   }
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main();
+// Run main() only when this file is the entry point. Compare real paths, so a run through a
+// symlinked skill folder (the usual install) is still recognised.
+function isEntry() {
+  if (!process.argv[1]) return false;
+  try { return fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url)); } catch { return false; }
+}
+if (isEntry()) main();

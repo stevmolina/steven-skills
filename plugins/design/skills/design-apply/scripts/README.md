@@ -22,7 +22,7 @@ one fail, 2 means the script could not run.
 | boxes | bordered, ringed, filled or lifted boxes of 2500px² or more on one screen | <=3 | 4-5 | >=6 |
 
 What counts as meaning for colors: anything close to the `:root` tokens `--accent`,
-`--accent-ink`, `--ok`, `--warn`, `--bad`, or any token named `--meaning-*`, `--state-*`,
+`--accent-ink`, `--accent-text`, `--ok`, `--warn`, `--bad`, or any token named `--meaning-*`, `--state-*`,
 `--flow-*` or `--mark*` (tints of those count too). The base palette `--bg`, `--surface`,
 `--ink`, `--muted` and `--line` never counts, even when tinted. Grey-ish colors (OKLCH
 chroma under 0.035), images and gradients are ignored.
@@ -46,7 +46,7 @@ The report names every check that was relaxed.
 
 ## gallery.mjs: compare systems side by side
 
-    node gallery.mjs --systems quiet-ledger,ink-and-hairline --out /tmp/gallery
+    node gallery.mjs --systems quiet-ledger,swiss-hairline --out /tmp/gallery
     node gallery.mjs --systems a,b,c --sample my-page.html --title "Pick a look"
     node gallery.mjs --systems a,b --preview
 

@@ -4,6 +4,7 @@ mood: A soft dark studio: graphite surfaces, ivory text, one periwinkle accent, 
 fits: [dashboard, product-page, report, docs]
 family: quiet-minimal
 loud: false
+scheme: dark
 source: https://mercury.com
 source_note: Refero Styles DESIGN.md (onyx canvas, graphite cards, ivory text, periwinkle action), pulled 2026-11-27
 ---

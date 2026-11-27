@@ -44,7 +44,7 @@ color temperature.
 
 ## 3. Save each candidate as a system
 
-For each one, add `library/<mood-name>/` with `DESIGN.md` and `tokens.css` exactly as
+For each one, add `../design-apply/library/<mood-name>/` with `DESIGN.md` and `tokens.css` exactly as
 `../design-apply/library/README.md` says. Name it by mood (`salt-and-ink`, not the brand).
 Cite the source site; never paste a link that holds an account or a long ID. Take the
 measured values from the source, then make them yours: real hex, a Google Fonts pairing
@@ -63,8 +63,8 @@ library.
 
 Pass `--sample <page.html>` to render the person's own content instead of the shared
 sample (the page needs `<style id="tokens">` in its head, or the tokens go in first).
-The script screenshots each candidate at desktop and phone, light and dark, runs the
-check on each, and writes `gallery.html` with everything side by side.
+The script screenshots each candidate (desktop light and dark, phone light), runs the
+check on each in all four views, and writes `gallery.html` with everything side by side.
 
 A candidate that fails the check gets fixed (usually contrast or one stray color) and
 rendered again before anyone sees it. Then look at the gallery yourself, and open it for

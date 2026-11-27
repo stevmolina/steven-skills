@@ -4,6 +4,7 @@ mood: Near-black control room: hairlines made of light, one glowing accent, flow
 fits: [diagram, dashboard, docs, product-page]
 family: product-saas
 loud: false
+scheme: dark
 source: https://linear.app
 source_note: Converted from the show-me Control Room style; references Linear, Raycast, Vercel, Stripe
 ---

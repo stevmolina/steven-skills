@@ -18,7 +18,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { launchBrowser } from './lib/browser.mjs';
 
 export const MODES = [
@@ -388,13 +388,14 @@ function measureInPage({ vw, vh }) {
   let unknown = 0;
   let checked = 0;
   for (const el of all) {
-    if (el === html || el instanceof SVGElement || SKIP_TAGS.has(el.tagName)) continue;
+    const svgText = el instanceof SVGElement && (el.tagName === 'text' || el.tagName === 'tspan');
+    if (el === html || (el instanceof SVGElement && !svgText) || SKIP_TAGS.has(el.tagName)) continue;
     if (!hasText(el) || el.disabled) continue;
     if (el.checkVisibility && !el.checkVisibility(visibleOpts)) continue;
     const r = el.getBoundingClientRect();
     if (r.width <= 1 || r.height <= 1) continue;
     const s = cs(el);
-    const fg = rgba(s.color);
+    const fg = rgba(svgText ? s.fill : s.color);
     if (!fg) continue;
     const alpha = fg[3] * opacityChain(el);
     if (alpha <= 0.02) continue;
@@ -669,4 +670,10 @@ async function main() {
   }
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main();
+// Run main() only when this file is the entry point. Compare real paths, so a run through a
+// symlinked skill folder (the usual install) is still recognised.
+function isEntry() {
+  if (!process.argv[1]) return false;
+  try { return fs.realpathSync(process.argv[1]) === fs.realpathSync(fileURLToPath(import.meta.url)); } catch { return false; }
+}
+if (isEntry()) main();
