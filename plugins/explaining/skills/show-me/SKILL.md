@@ -168,7 +168,8 @@ not seen rendered.
    For Mermaid, render it (`npx -y @mermaid-js/mermaid-cli -i in.mmd -o out.png`) or put it in
    a small HTML page and screenshot that.
 2. Open the PNG and look at it. Check: it is boxes and arrows, not a list; every label is
-   readable and inside its box; no arrow points at nothing; it fits a phone width; light and
-   dark both read when the page has both.
+   readable and inside its box; no arrow points at nothing. For an HTML page, also take one
+   screenshot at phone width (`--window-size=390,844`) and one per theme when the page has
+   light and dark, and look at each.
 3. Fix what is wrong and look again. Say in your reply that you checked the render, and show
    or link the screenshot.
