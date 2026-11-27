@@ -41,6 +41,7 @@ export function thresholds(check, device, overrides = []) {
     case 'chips': return { pass: 3, warn: 6 };
     case 'contrast': return { pass: 0, warn: 0 };
     case 'boxes': return overrides.includes('cards') ? { pass: 12, warn: 15 } : { pass: 3, warn: 5 };
+    case 'nodes': return { pass: 8, warn: 8 };
     default: throw new Error(`unknown check ${check}`);
   }
 }
@@ -51,6 +52,7 @@ export const CHECKS = [
   { id: 'chips', label: 'code chips / screen' },
   { id: 'contrast', label: 'contrast fails (AA)' },
   { id: 'boxes', label: 'boxes / screen' },
+  { id: 'nodes', label: 'diagram boxes' },
 ];
 
 const RANK = { pass: 0, warn: 1, fail: 2 };
@@ -65,6 +67,7 @@ function thresholdText(check, overrides) {
   const d = thresholds(check, 'desktop', overrides);
   const p = thresholds(check, 'phone', overrides);
   if (check === 'contrast') return 'pass 0, else fail';
+  if (check === 'nodes') return 'pass <=8 per drawing, else fail';
   const one = (t) => (t.warn === t.pass + 1 ? `pass <=${t.pass}, warn ${t.warn}, fail >=${t.warn + 1}` : `pass <=${t.pass}, warn <=${t.warn}, fail >${t.warn}`);
   if (d.pass === p.pass && d.warn === p.warn) return one(d);
   return `pass <=${d.pass}, warn <=${d.warn}, fail >${d.warn}; phone ${p.pass}/${p.warn}`;
@@ -457,7 +460,7 @@ function measureInPage({ vw, vh }) {
     }).length;
     if (sides >= 3) why.push(`border ${sides} sides`);
     const shadows = parseShadows(s.boxShadow);
-    if (shadows.some((sh) => sh.x === 0 && sh.y === 0 && sh.blur === 0 && sh.spread > 0 && sh.alpha > 0.1)) why.push('ring shadow');
+    if (shadows.some((sh) => sh.x === 0 && sh.y === 0 && sh.blur === 0 && sh.spread > 0 && sh.alpha > 0.04)) why.push('ring shadow');
     const radius = Math.max(...['TopLeft', 'TopRight', 'BottomLeft', 'BottomRight'].map((k) => parseFloat(s[`border${k}Radius`]) || 0));
     const own = rgba(s.backgroundColor);
     if (radius >= 4 && own && own[3] > 0.05 && (!s.backgroundImage || s.backgroundImage === 'none')) {
@@ -469,7 +472,9 @@ function measureInPage({ vw, vh }) {
     if (!why.length) continue;
     boxes.push({ ...docRect(el), sel: sel(el), why: why.join(', ') });
   }
-  // SVG boxes: a diagram that draws a rectangle per step is the same look as bordered divs.
+  // Diagram boxes: rectangles inside an SVG drawing. A diagram may have up to 8; layout boxes
+  // (cards and panels around the text) are counted separately above.
+  const nodes = new Map();
   for (const el of all) {
     if (!(el instanceof SVGElement) || el.tagName !== 'rect') continue;
     if (!isVisible(el)) continue;
@@ -488,8 +493,11 @@ function measureInPage({ vw, vh }) {
     const fl = s.fill && s.fill !== 'none' ? rgba(s.fill) : null;
     if (fl && fl[3] > 0.02 && dE(oklab(over(fl, under)), oklab(under)) > 0.012) why.push('svg filled box');
     if (!why.length) continue;
-    boxes.push({ ...docRect(el), sel: sel(el), why: why.join(', ') });
+    const key = svg || el;
+    if (!nodes.has(key)) nodes.set(key, { sel: sel(key), count: 0 });
+    nodes.get(key).count++;
   }
+  const drawings = [...nodes.values()].sort((a, b) => b.count - a.count);
 
   const meta = document.querySelector('meta[name="design-check"]');
   const overrides = meta ? (meta.getAttribute('content') || '').split(/[\s,]+/).map((x) => x.trim().toLowerCase()).filter(Boolean) : [];
@@ -509,6 +517,7 @@ function measureInPage({ vw, vh }) {
     words,
     chips: { max: chipStat.max, screen: chipStat.screen, total: chips.length, items: chipStat.items.slice(0, 8).map(({ sel: s, text }) => ({ sel: s, text })) },
     contrast: { fails: fails.length, checked, unknown, worst: fails.slice(0, 8) },
+    nodes: { max: drawings.length ? drawings[0].count : 0, drawings: drawings.slice(0, 4) },
     boxes: { max: boxStat.max, screen: boxStat.screen, counts: boxStat.counts, items: boxStat.items.slice(0, 8).map(({ sel: s, why, w, h }) => ({ sel: s, why, size: `${Math.round(w)}x${Math.round(h)}` })) },
   };
 }
@@ -560,6 +569,7 @@ const VALUE = {
   chips: (m) => m.chips.max,
   contrast: (m) => m.contrast.fails,
   boxes: (m) => m.boxes.max,
+  nodes: (m) => m.nodes.max,
 };
 
 function summarize(target, url, modes) {
