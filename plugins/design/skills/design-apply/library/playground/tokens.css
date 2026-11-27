@@ -1,0 +1,76 @@
+/* playground: Saturday-morning energy: loud saturated colors on white, thick rounded shapes, 3D buttons, bouncy feedback.
+ * Source: https://www.duolingo.com
+ */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap");
+
+:root{
+  color-scheme:light dark;
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --ink:#3c3c3c;
+  --muted:#6b6b6b;
+  --line:#e5e5e5;
+  --accent:#58cc02;
+  --accent-ink:#0d2600;
+  --ok:#1f7a1f;
+  --warn:#8a5200;
+  --bad:#d33232;
+  --shadow:0 4px 0 #e5e5e5;
+  --sheet-2:#f7f7f7;
+  --font-display:"Baloo 2","Nunito",ui-rounded,system-ui,sans-serif;
+  --font-body:"Nunito",ui-rounded,system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --h1:clamp(40px,6.5vw,88px);
+  --h1-weight:800;
+  --h1-track:-.01em;
+  --h1-lead:1.05;
+  --body:17px;
+  --lead:1.55;
+  --measure:58ch;
+  --space:8px;
+  --radius:18px;
+  --border:2px solid var(--line);
+  --ease:cubic-bezier(.34,1.56,.64,1);
+  --t-fast:160ms;
+  --t-med:260ms;
+  --bounce:cubic-bezier(.68,-.6,.32,1.6);
+  --t-shake:400ms;
+  --c-green:#58cc02;
+  --c-green-edge:#58a700;
+  --c-blue:#1cb0f6;
+  --c-blue-edge:#1899d6;
+  --c-pink:#ff4b8b;
+  --c-pink-edge:#d93a72;
+  --c-yellow:#ffc800;
+  --c-yellow-edge:#e5a400;
+  --c-purple:#a560e8;
+  --c-purple-edge:#8549ba;
+  --edge:0 4px 0;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131f24;
+    --surface:#1a2a31;
+    --ink:#f1f7fb;
+    --muted:#9fb1bb;
+    --line:#37464f;
+    --ok:#58cc02;
+    --warn:#ffc800;
+    --bad:#ff6b6b;
+    --shadow:0 4px 0 #0c1519;
+    --sheet-2:#202f36;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131f24;
+  --surface:#1a2a31;
+  --ink:#f1f7fb;
+  --muted:#9fb1bb;
+  --line:#37464f;
+  --ok:#58cc02;
+  --warn:#ffc800;
+  --bad:#ff6b6b;
+  --shadow:0 4px 0 #0c1519;
+  --sheet-2:#202f36;
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}

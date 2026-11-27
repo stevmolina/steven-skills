@@ -1,0 +1,64 @@
+/* night-studio: A soft dark studio: graphite surfaces, ivory text, one periwinkle accent, almost no borders.
+ * Source: https://mercury.com
+ */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap");
+
+:root{
+  color-scheme:dark light;
+  --bg:#171721;
+  --surface:#1e1e2a;
+  --ink:#ededf3;
+  --muted:#b4b4c0;
+  --line:rgba(237,237,243,.10);
+  --accent:#8490ff;
+  --accent-ink:#0f0f18;
+  --ok:#6fd1a0;
+  --warn:#e6b866;
+  --bad:#f08a8a;
+  --shadow:0 12px 32px rgba(0,0,0,.35);
+  --font-display:"DM Sans",ui-sans-serif,system-ui,sans-serif;
+  --font-body:"DM Sans",ui-sans-serif,system-ui,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Menlo,monospace;
+  --h1:clamp(40px,5.6vw,80px);
+  --h1-weight:500;
+  --h1-track:-.035em;
+  --h1-lead:1.04;
+  --body:16px;
+  --lead:1.6;
+  --measure:60ch;
+  --space:8px;
+  --radius:12px;
+  --border:1px solid var(--line);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --t-fast:140ms;
+  --t-med:300ms;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f4f4f8;
+    --surface:#ffffff;
+    --ink:#1a1a26;
+    --muted:#5b5b6d;
+    --line:rgba(26,26,38,.12);
+    --accent:#4553d6;
+    --accent-ink:#ffffff;
+    --ok:#1d7a52;
+    --warn:#8a5200;
+    --bad:#b3261e;
+    --shadow:0 8px 24px rgba(26,26,38,.08);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f4f4f8;
+  --surface:#ffffff;
+  --ink:#1a1a26;
+  --muted:#5b5b6d;
+  --line:rgba(26,26,38,.12);
+  --accent:#4553d6;
+  --accent-ink:#ffffff;
+  --ok:#1d7a52;
+  --warn:#8a5200;
+  --bad:#b3261e;
+  --shadow:0 8px 24px rgba(26,26,38,.08);
+}
+@media (prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-med:0ms}}
